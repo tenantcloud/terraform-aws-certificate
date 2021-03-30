@@ -25,9 +25,9 @@ data "aws_route53_zone" "self" {
 }
 
 resource "aws_acm_certificate" "self" {
-  domain_name       = var.domain_name.domain
-  alternative_names = local.cert_san
-  validation_method = "DNS"
+  domain_name               = var.domain_name.domain
+  subject_alternative_names = local.cert_san
+  validation_method         = "DNS"
 
   tags = var.tags
 
@@ -35,7 +35,7 @@ resource "aws_acm_certificate" "self" {
     create_before_destroy = true
     # Workaround for SAN doesn't maintain order
     # See https://github.com/terraform-providers/terraform-provider-aws/issues/8531
-    ignore_changes = [alternative_names]
+    ignore_changes = [subject_alternative_names]
   }
 }
 

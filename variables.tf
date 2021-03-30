@@ -34,6 +34,6 @@ variable "validation_allow_overwrite_records" {
 
 variable "region" {
   description = "Default AWS Region"
-  type        = "string"
+  type        = string
   default     = "us-west-2"
 }
